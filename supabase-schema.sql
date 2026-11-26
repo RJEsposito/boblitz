@@ -37,3 +37,6 @@ do $$ declare t text; begin
   execute format('create policy "Users manage own %s" on public.%I for all to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id)',t,t);
  end loop;
 end $$;
+
+-- Authorized video embed URL for each anime entry.
+alter table public.anime add column if not exists embed_url text;

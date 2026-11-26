@@ -48,3 +48,16 @@ The service worker caches the app shell. Your database data still needs an inter
 - The quick note is stored only in the current browser on the current device (localStorage), not synced. Do not use it for sensitive information.
 - The local video shelf stores metadata only. Browsers cannot preserve arbitrary local file paths across devices. Your video files stay on your own device; use a media player on the device that stores them. Do not upload copyrighted episodes to this website.
 - This is a starter app. Before relying on it long-term, add backups/export, stronger error handling, and test account recovery.
+
+
+## 5. Optional embedded video player
+
+Boblitz.exe includes an embedded player for video services that permit embedding. It currently accepts HTTPS embed URLs from YouTube (`/embed/...`), Vimeo (`player.vimeo.com/video/...`) and Internet Archive (`archive.org/embed/...`). Use only videos you own, have permission to stream, or that the provider makes available for embedding.
+
+If your Supabase project was already created before this player update, run this one-time migration in **Supabase → SQL Editor → New query**:
+
+```sql
+alter table public.anime add column if not exists embed_url text;
+```
+
+Then redeploy the updated project to Vercel. In Boblitz.exe, open an anime entry with **EDIT**, paste the permitted embed URL into **AUTHORIZED VIDEO EMBED URL**, and save. Open the **WATCH** tab and select **WATCH**. Playback is hosted by the provider; Boblitz.exe does not download, store, or proxy the video. Episode progress remains a manual update in the anime entry.

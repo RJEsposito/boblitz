@@ -36,7 +36,7 @@
     <section id="appView" class="hidden">
       <div class="welcome-row"><div><div class="eyebrow">PERSONAL ARCHIVE / ONLINE</div><h1>Good day, <span class="pink">collector.</span></h1><p class="muted">Your corner of the net is looking wonderfully strange.</p></div><div class="date-chip" id="todayLabel"></div></div>
       <nav class="nav" id="nav">
-        <button class="nav-btn active" data-page="dashboard">⌂ HOME</button><button class="nav-btn" data-page="library">▤ LIBRARY</button><button class="nav-btn" data-page="collections">▧ COLLECTIONS</button><button class="nav-btn" data-page="characters">♡ CHARACTERS</button><button class="nav-btn" data-page="calendar">▦ CALENDAR</button><button class="nav-btn" data-page="files">▣ LOCAL FILES</button>
+        <button class="nav-btn active" data-page="dashboard">⌂ HOME</button><button class="nav-btn" data-page="library">▤ LIBRARY</button><button class="nav-btn" data-page="watch">▶ WATCH</button><button class="nav-btn" data-page="collections">▧ COLLECTIONS</button><button class="nav-btn" data-page="characters">♡ CHARACTERS</button><button class="nav-btn" data-page="calendar">▦ CALENDAR</button><button class="nav-btn" data-page="files">▣ LOCAL FILES</button>
       </nav>
       <section id="dashboard" class="page">
         <div class="stats-grid">
@@ -58,6 +58,19 @@
         <div id="searchResults" class="poster-grid"></div>
         <div class="panel-head library-heading"><h3>YOUR ENTRIES</h3><select id="statusFilter"><option value="all">ALL STATUSES</option><option>Planning</option><option>Watching</option><option>Completed</option><option>Paused</option><option>Dropped</option></select></div>
         <div id="libraryGrid" class="poster-grid"></div>
+      </section>
+
+      <section id="watch" class="page hidden">
+        <div class="section-head"><div><div class="eyebrow">AUTHORIZED STREAMS ONLY</div><h2>Media player</h2></div></div>
+        <div class="notice">Add an embed link from a video service that allows embedding and that you are authorized to use. This player supports YouTube, Vimeo and Internet Archive embed links. It does not host video files.</div>
+        <div id="watchEmpty" class="empty">Choose an anime from your library and save an authorized embed URL in its entry to watch it here.</div>
+        <div id="watchStage" class="watch-stage hidden">
+          <div class="watch-stage-head"><div><div class="eyebrow">NOW PLAYING</div><h3 id="watchTitle">ANIME TITLE</h3></div><button id="closeWatch" class="secondary">CLOSE PLAYER</button></div>
+          <div class="video-frame"><iframe id="animePlayer" title="Anime video player" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+          <p class="small muted">Playback is provided by the external video host. Use the anime entry's progress field to update your watched episodes.</p>
+        </div>
+        <h3 class="library-heading">AVAILABLE IN YOUR LIBRARY</h3>
+        <div id="watchLibrary" class="poster-grid"></div>
       </section>
 
       <section id="collections" class="page hidden">
@@ -97,7 +110,7 @@
       <div class="two"><label>EPISODES WATCHED<input id="editProgress" type="number" min="0" value="0"></label><label>TOTAL EPISODES<input id="editTotal" type="number" min="0"></label></div>
       <label>YOUR RATING (0–10)<input id="editRating" type="number" min="0" max="10" step=".5"></label>
       <label>PERSONAL REVIEW<textarea id="editReview" rows="4" placeholder="What did you think?"></textarea></label>
-      <label>POSTER URL<input id="editCover" type="url" placeholder="https://..."></label>
+      <label>POSTER URL<input id="editCover" type="url" placeholder="https://..."></label>\n      <label>AUTHORIZED VIDEO EMBED URL<input id="editEmbed" type="url" placeholder="YouTube / Vimeo / Internet Archive embed URL"><small class="muted">Only supported, permitted embed links are accepted.</small></label>
       <div class="dialog-actions"><button type="button" id="deleteAnime" class="danger hidden">DELETE</button><button class="primary" type="submit">SAVE ENTRY</button></div>
     </form>
   </dialog>
